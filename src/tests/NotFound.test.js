@@ -1,37 +1,24 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import React from 'react';
-/* import userEvent from '@testing-library/user-event'; */
-import { MemoryRouter } from 'react-router-dom';
 import App from '../App';
 import renderWithRouter from '../renderWithRouter';
 
-/* test('Teste se página contém um heading h2 com o texto Page requested;', () => {
-  render(
-    <MemoryRouter>
-      <App />
-    </MemoryRouter>,
-  );
+describe('Teste se é exibido na tela a mensagem No favorite pokemon found', () => {
+  beforeEach(() => {
+    const { history } = renderWithRouter(<App />);
+    history.push('/keuwe');
+  });
 
-  const { history } = renderWithRouter(<App />);
+  test('teste se a pagina contém um h2 com o texto page requested not found', () => {
+    const title = screen.getByRole('heading', { name: /page/i });
 
-  history.push('/keuwe');
+    expect(title).toBeInTheDocument();
+    expect(title).toHaveTextContent('Page requested not found');
+  });
 
-  const takeText = screen.getByText(/page requested not found 😭/i);
-  expect(takeText).toBeInTheDocument();
-}); */
-
-test('Teste se é exibido na tela a mensagem No favorite pokemon found', () => {
-  render(
-    <MemoryRouter>
-      <App />
-    </MemoryRouter>,
-  );
-
-  const { history } = renderWithRouter(<App />);
-
-  history.push('/keuwe');
-
-  const takeImage = screen.getByRole('img',
-    { src: 'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif' });
-  expect(takeImage).toBeInTheDocument();
+  test('teste se a página renderiza a imagem', () => {
+    const image = screen.getByAltText(/pikachu/i);
+    expect(image).toBeInTheDocument();
+    expect(image).toHaveAttribute('src', 'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif');
+  });
 });
