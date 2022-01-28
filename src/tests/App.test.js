@@ -77,7 +77,7 @@ test('redireciona para a página notfound', () => {
   const takeText = screen.getByRole('heading', { name: /Page requested not found/i });
 
   const takeImage = screen.getByRole('img',
-{ name: 'Pikachu crying because the page requested was not found' });
+    { name: 'Pikachu crying because the page requested was not found' });
   expect(takeImage).toBeInTheDocument();
   expect(takeText).toBeInTheDocument();
 });
