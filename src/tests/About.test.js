@@ -1,11 +1,8 @@
 import { screen } from '@testing-library/react';
 import React from 'react';
-/* import userEvent from '@testing-library/user-event'; */
 import renderWithRouter from '../renderWithRouter';
-/* import { MemoryRouter } from 'react-router-dom'; */
 import About from '../components/About';
 
-// testa h2
 test('Teste se a página contém um heading h2 com o texto About Pokédex.', () => {
   renderWithRouter(<About />);
 
